@@ -96,6 +96,98 @@ This exercise demonstrated an IDOR vulnerability in the chat transcript download
 
 By inspecting HTTP requests and modifying a file identifier, I learned how insufficient server-side authorization can expose another user's information.
 
+---
+
+# Lab 2: User ID Controlled by Request Parameter with Unpredictable User IDs
+
+## 1. Lab Information
+
+- **Platform:** PortSwigger Web Security Academy
+- **Vulnerability:** Broken Access Control / IDOR
+- **Difficulty:** Apprentice
+- **Status:** Solved
+- **Environment:** Authorized training lab
+
+## 2. Objective
+
+Investigate an access control vulnerability involving unpredictable user IDs (UUIDs) and access another user's sensitive account information.
+
+## 3. Tools Used
+
+- Web Browser
+- Browser Address Bar
+- Browser Developer Tools
+- Text Editor
+
+## 4. Testing Methodology
+
+**Step 1: Application Reconnaissance**
+
+Explored the website's blog posts and inspected the author profile links.
+
+**Step 2: User ID Discovery**
+
+Identified that author profile URLs exposed user identifiers in UUID format.
+
+Located the target user `carlos` through the blog functionality and recorded his UUID.
+
+**Step 3: Authenticated Access**
+
+Logged in using the provided lab credentials:
+
+- Username: `wiener`
+- Password: `peter`
+
+Opened the My Account page and inspected the `id` request parameter.
+
+**Step 4: Authorization Testing**
+
+Observed the following URL structure:
+
+`/my-account?id=<USER_UUID>`
+
+Replaced the authenticated user's UUID with Carlos's UUID.
+
+**Step 5: Vulnerability Confirmation**
+
+The application allowed access to another user's account information through the modified request parameter.
+
+Successfully completed the lab.
+
+## 5. Root Cause
+
+The application relied on a user-controlled identifier without adequately verifying that the authenticated user was authorized to access the requested account.
+
+Using unpredictable UUIDs did not prevent unauthorized access.
+
+## 6. Security Impact
+
+- Unauthorized access to another user's account information
+- Exposure of sensitive account data
+- Potential credential or API key disclosure
+- Violation of user confidentiality
+
+## 7. Recommended Remediation
+
+1. Implement server-side authorization checks for every account request.
+2. Verify the authenticated user's permission to access the requested account.
+3. Return `403 Forbidden` for unauthorized access attempts.
+4. Avoid treating unpredictable identifiers as an authorization mechanism.
+5. Test access controls across different user accounts.
+
+## 8. Key Learnings
+
+- UUIDs can make identifiers harder to guess but do not replace authorization.
+- Public pages can reveal identifiers used by protected application features.
+- Authentication and authorization are different security controls.
+- IDOR vulnerabilities may expose sensitive information even when object identifiers are unpredictable.
+
+## 9. Final Result
+
+**Lab Status: SOLVED**
+
+Successfully investigated and demonstrated an IDOR vulnerability involving unpredictable user identifiers in an authorized training environment.
+
 The exercise was completed in an authorized training environment.
 
 **Final Status: SOLVED**
