@@ -187,6 +187,45 @@ Using unpredictable UUIDs did not prevent unauthorized access.
 **Lab Status: SOLVED**
 
 Successfully investigated and demonstrated an IDOR vulnerability involving unpredictable user identifiers in an authorized training environment.
+## Lab 3: Exploiting an API Endpoint Using Documentation
+
+**Platform:** PortSwigger Web Security Academy  
+**Category:** API Security / Broken Access Control  
+**Tool:** Burp Suite Community Edition  
+**Status:** Solved (Guided)
+
+### Objective
+Discover exposed API documentation and use the documented functionality to delete the lab user `carlos`.
+
+### Methodology
+1. Logged into the lab using the provided test credentials.
+2. Inspected HTTP requests using Burp Proxy and Repeater.
+3. Requested `/api` and observed a `302` redirect to `/api/`.
+4. Requested `/api/` and received `200 OK`.
+5. Opened the exposed API documentation in a browser.
+6. Identified the documented user deletion functionality.
+7. Submitted the following request through the documentation interface:
+
+   `DELETE /api/user/carlos`
+
+8. Observed a `200 OK` response and confirmation that the lab was solved.
+
+### Security Impact
+Insufficient authorization checks on sensitive API operations can allow unauthorized users to perform destructive actions, including deleting other users' accounts.
+
+### Recommended Remediation
+- Enforce server-side authorization checks on every sensitive API endpoint.
+- Restrict account deletion functionality to appropriately authorized users.
+- Protect API documentation where appropriate, without relying on documentation secrecy as the primary security control.
+- Test access controls for different user roles.
+
+### Key Learnings
+- API documentation can expose functionality not visible in the normal website interface.
+- HTTP redirects provide useful reconnaissance clues.
+- Burp Repeater helps investigate endpoint behavior.
+- Successful API responses must be evaluated alongside authorization requirements.
+
+**Learning Method:** Guided lab completion, followed by independent identification of the DELETE request in Burp HTTP History.
 
 The exercise was completed in an authorized training environment.
 
