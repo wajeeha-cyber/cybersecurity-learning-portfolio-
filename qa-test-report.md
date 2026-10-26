@@ -1,139 +1,178 @@
-# Manual Website QA Testing Report
+# Manual Website QA Testing | Sample Report
 
-**Tester:** Wajeeha
-**Project:** Beginner Manual Website QA Testing
-**Website:** https://the-internet.herokuapp.com/checkboxes
-**Testing Type:** Functional Testing
+**Tester:** Wajeeha  
+**Project type:** Beginner manual functional QA sample  
+**Application under test:** [The Internet demo application](https://the-internet.herokuapp.com/)  
+**Test areas:** Checkboxes, dropdown, login, logout, and post-logout access behavior  
+**Execution date:** Not recorded in the original notes  
+**Browser / browser version / OS:** Not recorded in the original QA notes  
+**Method:** Manual user-interface checks documented from prior practice
 
-## Test Case TC-001: Checkbox Functionality
+> **Scope note:** This is a reorganized version of the original learning report. It describes the six checks previously documented; it does **not** claim that they have been rerun on the date of this update. This is not a paid client engagement, comprehensive website audit, or penetration test.
 
-**Objective:** Verify that both checkboxes can be selected and deselected independently.
+## 1. Objective
 
-**Precondition:** The checkbox testing page is loaded successfully.
+Check that selected user-facing functions of a public practice website behave as expected, and communicate results in a reproducible format appropriate for an entry-level manual QA sample.
 
-### Test Steps
-1. Open the checkbox testing page.
-2. Observe the initial state of both checkboxes.
-3. Click Checkbox 1 and observe the result.
-4. Click Checkbox 2 and observe the result.
-5. Verify that each checkbox can be selected or deselected independently.
+## 2. Scope and Test Environment
 
-### Expected Result
-Both checkboxes should respond to clicks and change their selected state independently.
+| Item | Detail |
+| --- | --- |
+| Target | \`https://the-internet.herokuapp.com\` |
+| Pages used | \`/checkboxes\`, \`/dropdown\`, \`/login\`, \`/secure\` |
+| Testing approach | Manual browser interactions |
+| Test accounts | Public demo credentials provided by the practice application for its login example |
+| In scope | Checkbox state changes; dropdown selections; valid/invalid/blank login; logout and post-logout protected-page behavior |
+| Out of scope | Cross-browser and mobile coverage, accessibility audit, performance/load tests, automated tests, and comprehensive security assessment |
+| Attachments | No screenshots or network captures were included in the original QA report |
 
-### Actual Result
-Checkbox 2 was initially selected. Both checkboxes responded to clicks and could be selected or deselected independently.
+Because the original notes do not identify the browser version, OS, test timestamps, or screenshots, these details are deliberately **not invented** here. Future executions should record them.
 
-**Test Status:** PASS
-**Bug Found:** No
+## 3. Test Execution Summary
 
-### Conclusion
-The checkbox functionality worked as expected during this manual test. No functional issue was observed in the tested interactions.
+| Test ID | Feature / Scenario | Result | Issue observed? |
+| --- | --- | --- | --- |
+| TC-001 | Checkboxes can be selected and deselected | PASS | No |
+| TC-002 | Dropdown accepts both listed options | PASS | No |
+| TC-003 | Valid demo login opens Secure Area | PASS | No |
+| TC-004 | Incorrect password is rejected | PASS | No |
+| TC-005 | Empty username and password are rejected | PASS | No |
+| TC-006 | Logout prevents access to Secure Area without signing in again | PASS | No |
 
----
-**Note:** This report documents one manual functional test, not a complete website security assessment.
+**Summary:** 6 test cases documented, 6 marked PASS, 0 functional defects recorded within these specific checks. This is a **limited sample**; it does not establish that the website is bug-free.
 
-## Test Case TC-002: Dropdown Functionality
+## 4. Detailed Test Cases
 
-**Website:** https://the-internet.herokuapp.com/dropdown
+### TC-001 — Checkbox Functionality
 
-**Objective:** Verify that both dropdown options can be selected successfully.
+- **URL:** https://the-internet.herokuapp.com/checkboxes
+- **Objective:** Verify that the two checkboxes can be toggled independently.
+- **Precondition:** Checkbox demo page is loaded.
 
-### Test Steps
-1. Open the dropdown testing page.
-2. Select Option 1.
-3. Verify that Option 1 is displayed.
-4. Select Option 2.
-5. Verify that Option 2 is displayed.
+**Steps**
+1. Open the checkbox page.
+2. Observe the initial state of each checkbox.
+3. Toggle Checkbox 1.
+4. Toggle Checkbox 2.
+5. Verify that either can be selected or deselected without changing the other unexpectedly.
 
-### Expected Result
-The dropdown should allow selection of Option 1 and Option 2 and display the selected value correctly.
+**Expected:** Each checkbox independently reflects the user's selection.  
+**Observed:** Checkbox 2 was initially selected. Both checkboxes responded to clicks and could be selected or deselected.  
+**Result:** **PASS**. No functional issue observed.
 
-### Actual Result
-Both Option 1 and Option 2 were selected successfully.
+### TC-002 — Dropdown Functionality
 
-**Test Status:** PASS
-**Bug Found:** No
+- **URL:** https://the-internet.herokuapp.com/dropdown
+- **Objective:** Check both available dropdown options.
 
-## Test Case TC-003: Valid Login
+**Steps**
+1. Open the dropdown page.
+2. Select Option 1 and inspect the displayed selection.
+3. Select Option 2 and inspect the displayed selection.
 
-**Website:** https://the-internet.herokuapp.com/login
+**Expected:** Both options can be selected and the displayed value updates.  
+**Observed:** Option 1 and Option 2 were each selected successfully.  
+**Result:** **PASS**. No functional issue observed.
 
-**Objective:** Verify successful login with valid credentials.
+### TC-003 — Valid Login
 
-**Test Steps:**
+- **URL:** https://the-internet.herokuapp.com/login
+- **Objective:** Check the standard successful sign-in flow.
+
+**Steps**
 1. Open the login page.
-2. Enter the provided valid demo username and password.
-3. Click Login.
+2. Enter the site's published valid demo username and password.
+3. Submit the form.
+4. Check whether the Secure Area opens.
 
-**Expected Result:** Login succeeds and the Secure Area opens.
+**Expected:** Valid credentials allow access to the Secure Area.  
+**Observed:** Login succeeded and the Secure Area opened.  
+**Result:** **PASS**. No functional issue observed.
 
-**Actual Result:** Login succeeded and the Secure Area opened.
+### TC-004 — Invalid Password
 
-**Test Status:** PASS
-**Bug Found:** No
+- **URL:** https://the-internet.herokuapp.com/login
+- **Objective:** Verify that an incorrect password is rejected.
 
-## Test Case TC-004: Invalid Password
-
-**Website:** https://the-internet.herokuapp.com/login
-
-**Objective:** Verify that an incorrect password is rejected.
-
-**Test Steps:**
+**Steps**
 1. Open the login page.
 2. Enter the valid demo username.
 3. Enter an incorrect password.
-4. Click Login.
+4. Submit the form and inspect the result.
 
-**Expected Result:** Login is rejected and an error message appears.
+**Expected:** Login fails and an error message appears.  
+**Observed:** Login was rejected and an error message appeared.  
+**Result:** **PASS**. No functional issue observed.
 
-**Actual Result:** Login was rejected and an error message appeared.
+### TC-005 — Empty Login Fields
 
-**Test Status:** PASS
+- **URL:** https://the-internet.herokuapp.com/login
+- **Objective:** Verify that blank credentials cannot sign in.
 
-## Test Case TC-005: Empty Login Fields
-
-**Website:** https://the-internet.herokuapp.com/login
-
-**Objective:** Verify that login is rejected when both username and password fields are empty.
-
-### Test Steps
+**Steps**
 1. Open the login page.
-2. Leave the username field empty.
-3. Leave the password field empty.
-4. Click Login.
+2. Leave both the username and password fields blank.
+3. Submit the form.
 
-### Expected Result
-Login should be rejected when both fields are empty.
+**Expected:** The application rejects login with empty credentials.  
+**Observed:** An error message appeared and login was rejected.  
+**Result:** **PASS**. No functional issue observed.
 
-### Actual Result
-The website displayed an error message and rejected the login attempt.
+### TC-006 — Logout and Post-Logout Access
 
-**Test Status:** PASS
-**Bug Found:** No
+- **URLs:** https://the-internet.herokuapp.com/login and https://the-internet.herokuapp.com/secure
+- **Objective:** Check that the login state ends after logout in the tested workflow.
 
-## Test Case TC-006: Logout and Session Verification
+**Steps**
+1. Log in with the site's valid demo credentials.
+2. Click **Logout**.
+3. Observe the landing page.
+4. Attempt to open \`/secure\` directly without logging in again.
+5. Check whether protected content is shown.
 
-**Website:** https://the-internet.herokuapp.com/login
+**Expected:** Logout returns the user to the login screen and protected content is not accessible without authenticating again.  
+**Observed:** Logout returned to the login page. Revisiting \`/secure\` presented a login page or authentication-required message instead of the Secure Area. The original notes did not record the exact HTTP status.  
+**Result:** **PASS** for the tested workflow. No issue observed.
 
-**Objective:** Verify that logout returns the user to the login page and that the protected page cannot be accessed without logging in again.
+**Security limitation:** This functional check is not a comprehensive session-management security audit. It does not validate cookie invalidation, token rotation, caching, concurrent sessions, or every protected endpoint.
 
-### Test Steps
-1. Log in using the provided valid demo credentials.
-2. Click Logout.
-3. Verify that the login page appears.
-4. Navigate directly to https://the-internet.herokuapp.com/secure.
-5. Observe whether authentication is required.
+## 5. Defects and Follow-Up
 
-### Expected Result
-After logout, the protected page should not be accessible without logging in again.
+**Confirmed functional defects in the recorded test cases:** None.
 
-### Actual Result
-Logout returned the browser to the login page. A subsequent attempt to open /secure resulted in a login page or authentication-required message instead of access to the Secure Area.
+A QA report remains useful when tests pass: it documents **what was checked**, **how it was checked**, and **what happened**. Passing these tests does not guarantee coverage beyond the scope above.
 
-**Test Status:** PASS
-**Bug Found:** No issue observed.
+For future authorized projects, issues should be documented using this template:
 
-### Security Learning
-This test checked whether the protected page remained inaccessible after logout. It does not establish that all session-management controls are secure.
-**Bug Found:** No
+| Field | What to record |
+| --- | --- |
+| Bug ID / Title | Short and specific description |
+| Environment | URL, browser/version, OS, device |
+| Preconditions | Account state and required setup |
+| Reproduction steps | Numbered actions |
+| Expected result | Correct behavior |
+| Actual result | Observed incorrect behavior |
+| Evidence | Sanitized screenshot, video, or relevant logs |
+| Severity / Priority | Justified by scope and actual impact |
+| Retest result | Whether the issue persists after a fix |
+
+**Template only:** No issue is being claimed in this section.
+
+## 6. Limitations and Next Improvements
+
+- Only six selected workflows were tested; this was not a site-wide review.
+- Test date, browser/version, OS, and screenshots were not recorded in the original notes.
+- Responsive behavior, accessibility, localization, and performance were not assessed.
+- No automated regression suite was executed.
+- Further test runs should record environment metadata, screenshots, boundary inputs, and exact error text/status where useful.
+- Any future client testing must have clear authorization and a written, agreed scope.
+
+## 7. Conclusion
+
+This sample demonstrates introductory manual QA practices: defining objectives, writing reproducible test steps, comparing expected and observed outcomes, and acknowledging test coverage limits.
+
+**Final recorded outcome:** 6 of 6 documented checks passed; no functional defects were recorded within those checks.
+
+---
+
+**Portfolio:** [Cybersecurity Learning Portfolio](README.md) · **GitHub:** [@wajeeha-cyber](https://github.com/wajeeha-cyber)
